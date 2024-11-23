@@ -83,10 +83,8 @@ const filtarInfo = async () => {
         
     // creamos un forEach por cada user vamos a obtener la informacion
     usuarios.forEach(user => {
-        let usuariosPost = Posts.filter(post => post.userId === user.id);
-        let usuariosComent = Comments.filter(comment => 
-            usuariosPost.some(post => post.id === comment.postId)
-        );
+        let usuariosPost  = Posts.filter(post => post.id === user.id);
+        let usuariosComent = Comments.filter(comment => usuariosPost.some(post => post.id === comment.postId));
         let usuariosAlbum = Albums.filter(album => user.id === album.userId);
         let usuariosPhoto = Photos.filter(photo => usuariosAlbum.some(album => album.id === photo.albumId));
         let usuariosTodo = Todos.filter(todo => todo.userId === user.id);
